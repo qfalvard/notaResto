@@ -19,16 +19,10 @@ class ReviewController extends AbstractController
     }
 
     /**
-     * @Route("/review/{id}", name="review_show", methods={"GET"})
+     * @Route("/review/{review}", name="review_show", methods={"GET"})
+     * @Param Review $review
      */
-    public function show(Review $id)
-    {
-    }
-
-    /**
-     * @Route("/review/new", name="review_new", methods={"GET"})
-     */
-    public function new()
+    public function show(Review $review)
     {
     }
 
@@ -41,15 +35,17 @@ class ReviewController extends AbstractController
 
     /**
      * @Route ("/review/edit", name="review_edit", methods{"GET, POST"})
+     * @Param Review $review
      */
-    public function edit(Review $id)
+    public function edit(Review $review)
     {
     }
 
     /**
      * @Route ("/review", name="review_delete", methods={"DELETE"})
+     * @Param Review $review
      */
-    public function delete(Review $id)
+    public function delete(Review $review)
     {
     }
 }

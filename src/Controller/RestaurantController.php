@@ -20,6 +20,7 @@ class RestaurantController extends AbstractController
 
     /**
      * @Route("/restaurant/{id}", name="restaurant_show", methods={"GET"})
+     * @Param Restaurant $id
      */
     public function show(Restaurant $id)
     {
@@ -41,6 +42,7 @@ class RestaurantController extends AbstractController
 
     /**
      * @Route ("/restaurant/edit", name="restaurant_edit", methods{"GET, POST"})
+     * @Param Restaurant $id
      */
     public function edit(Restaurant $id)
     {
@@ -48,6 +50,7 @@ class RestaurantController extends AbstractController
 
     /**
      * @Route ("/restaurant", name="restaurant_delete", methods={"DELETE"})
+     * @Param Restaurant $id
      */
     public function delete(Restaurant $id)
     {
