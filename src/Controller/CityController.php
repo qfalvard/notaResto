@@ -19,30 +19,33 @@ class CityController extends AbstractController
     }
 
     /**
-     * @Route("/city/{id}", name="city_show", methods={"GET"})
+     * @Route("/city/{city}", name="city_show", methods={"GET"})
+     * @param City $city
      */
-    public function show(City $id)
+    public function show(City $city)
     {
     }
 
     /**
-     * @Route ("/city", name="city_create", methods{"POST"})
+     * @Route ("/city", name="city_create", methods={"POST"})
      */
     public function create()
     {
     }
 
     /**
-     * @Route ("/city/edit", name="city_edit", methods{"GET, POST"})
+     * @Route ("/city/{city}/edit", name="city_edit", methods={"GET, POST"})
+     * @param City $city
      */
-    public function edit(City $id)
+    public function edit(City $city)
     {
     }
 
     /**
-     * @Route ("/city", name="city_delete", methods={"DELETE"})
+     * @Route ("/city/{city}", name="city_delete", methods={"DELETE"})
+     * @param City $city
      */
-    public function delete(City $id)
+    public function delete(City $city)
     {
     }
 }

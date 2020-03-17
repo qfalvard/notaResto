@@ -19,10 +19,10 @@ class RestaurantPictureController extends AbstractController
     }
 
     /**
-     * @Route("/picture/{id}", name="picture_show", methods={"GET"})
-     * @Param RestaurantPicture $id
+     * @Route("/picture/{picture}", name="picture_show", methods={"GET"})
+     * @param RestaurantPicture $picture
      */
-    public function show(RestaurantPicture $id)
+    public function show(RestaurantPicture $picture)
     {
     }
 
@@ -34,25 +34,25 @@ class RestaurantPictureController extends AbstractController
     }
 
     /**
-     * @Route ("/picture", name="picture_create", methods{"POST"})
+     * @Route ("/picture", name="picture_create", methods={"POST"})
      */
     public function create()
     {
     }
 
     /**
-     * @Route ("/picture/edit", name="picture_edit", methods{"GET, POST"})
-     * @Param RestaurantPicture $id
+ * @Route ("/picture/{picture}/edit", name="picture_edit", methods={"GET, POST"})
+     * @param RestaurantPicture $picture
      */
-    public function edit(RestaurantPicture $id)
+    public function edit(RestaurantPicture $picture)
     {
     }
 
     /**
-     * @Route ("/picture", name="picture_delete", methods={"DELETE"})
-     * @Param RestaurantPicture $id
+     * @Route ("/picture/{picture}", name="picture_delete", methods={"DELETE"})
+     * @param RestaurantPicture $picture
      */
-    public function delete(RestaurantPicture $id)
+    public function delete(RestaurantPicture $picture)
     {
     }
 }

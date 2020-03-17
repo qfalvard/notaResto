@@ -19,23 +19,24 @@ class ReviewController extends AbstractController
     }
 
     /**
+     * Affiche un review
      * @Route("/review/{review}", name="review_show", methods={"GET"})
-     * @Param Review $review
+     * @param review $review
      */
     public function show(Review $review)
     {
     }
 
     /**
-     * @Route ("/review", name="review_create", methods{"POST"})
+     * @Route ("/review", name="review_create", methods={"POST"})
      */
     public function create()
     {
     }
 
     /**
-     * @Route ("/review/edit", name="review_edit", methods{"GET, POST"})
-     * @Param Review $review
+     * @Route ("/review/edit", name="review_edit", methods={"GET, POST"})
+     * @param Review $review
      */
     public function edit(Review $review)
     {
@@ -43,7 +44,7 @@ class ReviewController extends AbstractController
 
     /**
      * @Route ("/review", name="review_delete", methods={"DELETE"})
-     * @Param Review $review
+     * @param Review $review
      */
     public function delete(Review $review)
     {
