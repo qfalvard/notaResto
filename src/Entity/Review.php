@@ -29,30 +29,30 @@ class Review
     private $rating;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Restaurant", inversedBy="reviews")
      * @ORM\JoinColumn(nullable=false)
      */
     private $restaurant;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Review", inversedBy="reviews")
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Review", inversedBy="childs")
      */
     private $parent;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="parent")
      */
-    private $reviews;
+    private $childs;
 
     public function __construct()
     {
-        $this->setCreatedAt(new \DateTime());  
-        $this->reviews = new ArrayCollection();
+        $this->setCreatedAt(new \DateTime());
+        $this->childs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,18 +84,6 @@ class Review
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
     public function getRestaurant(): ?Restaurant
     {
         return $this->restaurant;
@@ -104,6 +92,18 @@ class Review
     public function setRestaurant(?Restaurant $restaurant): self
     {
         $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
 
         return $this;
     }
@@ -123,28 +123,28 @@ class Review
     /**
      * @return Collection|self[]
      */
-    public function getReviews(): Collection
+    public function getChilds(): Collection
     {
-        return $this->reviews;
+        return $this->childs;
     }
 
-    public function addReview(self $review): self
+    public function addChild(self $child): self
     {
-        if (!$this->reviews->contains($review)) {
-            $this->reviews[] = $review;
-            $review->setParent($this);
+        if (!$this->childs->contains($child)) {
+            $this->childs[] = $child;
+            $child->setParent($this);
         }
 
         return $this;
     }
 
-    public function removeReview(self $review): self
+    public function removeChild(self $child): self
     {
-        if ($this->reviews->contains($review)) {
-            $this->reviews->removeElement($review);
+        if ($this->childs->contains($child)) {
+            $this->childs->removeElement($child);
             // set the owning side to null (unless already changed)
-            if ($review->getParent() === $this) {
-                $review->setParent(null);
+            if ($child->getParent() === $this) {
+                $child->setParent(null);
             }
         }
 
