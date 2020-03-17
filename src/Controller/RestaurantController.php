@@ -31,6 +31,7 @@ class RestaurantController extends AbstractController
      */
     public function new()
     {
+        dd('toto');
     }
 
     /**
