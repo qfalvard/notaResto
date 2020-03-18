@@ -56,6 +56,20 @@ class Restaurant
         $this->reviews = new ArrayCollection();
     }
 
+    public function averageRating(): float
+    {
+        // On trouvera ici la somme des ratings divisée par le nombre de rating.
+        // Ca nous donne donc la moyenne des ratings pour un restaurant donné.
+        $somme = 0;
+        $total = 0;
+
+        foreach ($this->getReviews() as $review) {
+            $somme += $review->getRating();
+            $total ++;
+        }
+        return $somme/$total;
+    }
+
     public function getId(): ?int
     {
         return $this->id;

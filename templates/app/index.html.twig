@@ -3,13 +3,14 @@
 {% block title %}Hello AppController!{% endblock %}
 
 {% block body %}
-<ul>
-    {% for restaurant in restaurants %}
-    <li>
-        {{ restaurant.name }}<br>
-        <small>{{ restaurant.description }}</small>
-    </li>
-    {% endfor %}
-
+<ul style="list-style: none;">
+    <div class="row">
+        {% for restaurant in restaurants %}
+        <li class="col-3 mx-auto my-2">
+            <p></p>{{ restaurant.name }} (Moyenne de {{ restaurant.averageRating | number_format(2, ',') }})<br>
+            <small>{{ restaurant.description }}</small>
+        </li>
+        {% endfor %}
+    </div>
 </ul>
 {% endblock %}
