@@ -3,27 +3,36 @@
 namespace App\Controller;
 
 use App\Entity\Restaurant;
+use App\Repository\RestaurantRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class RestaurantController extends AbstractController
 {
+
     /**
-     * @Route("/restaurant", name="restaurant")
+     * @Route("/restaurant", name="restaurant_index", methods={"GET"})
      */
-    public function index()
+    public function index(RestaurantRepository $restaurantRepository): Response
     {
+        $restaurants = $restaurantRepository->findAll();
         return $this->render('restaurant/index.html.twig', [
-            'controller_name' => 'RestaurantController',
+            'restaurants' => $restaurants,
         ]);
     }
 
+
+
     /**
-     * @Route("/restaurant/{restaurant}", name="restaurant_show", methods={"GET"})
+     * @Route("/restaurant/{restaurant}", name="restaurant_show", methods={"GET"}, requirements={"restaurant"="\d+"})
      * @param Restaurant $restaurant
      */
     public function show(Restaurant $restaurant)
     {
+        return $this->render('restaurants/show.html.twig', [
+            'restaurant' => $restaurant,
+        ]);
     }
 
     /**
@@ -31,7 +40,6 @@ class RestaurantController extends AbstractController
      */
     public function new()
     {
-        dd('toto');
     }
 
     /**

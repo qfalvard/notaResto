@@ -7,7 +7,7 @@
     <div class="row">
         {% for restaurant in restaurants %}
         <li class="col-3 mx-auto my-2">
-            <p></p>{{ restaurant.name }} (Moyenne de {{ restaurant.averageRating | number_format(2, ',') }})<br>
+            <p>{{ restaurant.name }} (Moyenne de {{ restaurant.averageRating | number_format(2, ',') }})</p><br>
             <small>{{ restaurant.description }}</small>
         </li>
         {% endfor %}

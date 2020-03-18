@@ -12,6 +12,29 @@
 
     <title>{% block title %}Welcome!{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
+
+    <nav class="nav bg-secondary py-3 row">
+        <div class="col-4">
+            <p class="text-white">
+                {% if app.user %}
+                Bienvenue {{ app.user.email }} !
+                {% else %}
+                Veuillez vous connecter.
+                {% endif %}
+            </p>
+        </div>
+        <div class="justify-content-center">
+            <a href="/restaurant">Mes restaurant</a>
+            <a href="/restaurant/new">Ajouter un restaurant</a>
+            <a href="/restaurant">Afficher tous les restaurants</a>
+            <a href="/user">Tous les utilisateurs</a>
+        </div>
+        <div class="row col-8 justify-content-end">
+            <a class=" mx-1 btn btn-dark nav-link active" href="/register">Register</a>
+            <a class="mx-1 btn btn-dark nav-link" href="/login">Login</a>
+            <a class="mx-1 btn btn-light nav-link disabled" href="/Logout">Logout</a>
+        </div>
+    </nav>
 </head>
 
 <body class="container">
