@@ -34,6 +34,7 @@
         <div class="row">
             {% for restaurant in restaurants %}
             {% if not loop.first %}
+            <h1>{{ restaurant.city.zipNoWhitespaces }}</h1>
             <div class="col-md-4">
                 <div class="card mb-4 shadow-sm">
                     <svg class="bd-placeholder-img card-img-top" width="100%" height="225"

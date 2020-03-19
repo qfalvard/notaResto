@@ -20,9 +20,10 @@
                 avis !
             </a>
         </p>
+
         <h2>Les avis : </h2>
         {% for review in restaurant.reviews %}
-            <h5>Ecrite par : Anonyme</h5>
+            <h5>Ecrit par : Anonyme</h5>
             <p class=""><strong>Note</strong> : {{ review.rating }}</p>
             <p class=""><strong>Message</strong> : <br> {{ review.message }}</p>
             <div class="form-group">

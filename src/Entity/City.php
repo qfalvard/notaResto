@@ -67,6 +67,11 @@ class City
         return $this;
     }
 
+    public function getZipNoWhitespaces()
+    {
+        return str_replace(' ', '', $this->getZipcode());
+    }
+
     /**
      * @return Collection|Restaurant[]
      */

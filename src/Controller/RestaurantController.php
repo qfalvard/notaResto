@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Restaurant;
+use App\Repository\CityRepository;
 use App\Repository\RestaurantRepository;
 use App\Repository\ReviewRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -42,6 +43,7 @@ class RestaurantController extends AbstractController
      */
     public function new()
     {
+        return $this->render('restaurant/form.html.twig');
     }
 
     /**

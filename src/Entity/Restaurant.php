@@ -74,6 +74,12 @@ class Restaurant
         }
     }
 
+    public function trim()
+    {
+        $trim = $this->getCity();
+        return trim($trim);
+    }
+
     public function getReview(): ?string
     {
         foreach ($this->getReviews() as $review) {
