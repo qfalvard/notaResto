@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RestaurantController!{% endblock %}
+
+{% block body %}
+
+<section class="jumbotron text-center">
+    <div class="container">
+        <h1>Notre meilleur restaurant est...</h1>
+        <h2>
+            <strong>
+            {{ restaurant.name }} !
+            </strong>
+            <smallclass="badge badge-primary">
+                {{ restaurant.averageRating | number_format(2, ',') }} sur 5 étoiles!
+                </small>
+        </h2>
+        <p class="lead text-muted">
+            {{ restaurant.description }}
+        </p>
+        <p>
+            <a href="{{ path('restaurant_show', {restaurant: restaurant.id} ) }}" class="btn btn-success my-2">Donner un
+                avis !
+            </a>
+        </p>
+    </div>
+</section>
+{% endblock %}

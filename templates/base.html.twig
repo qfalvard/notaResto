@@ -23,17 +23,34 @@
                 {% endif %}
             </p>
         </div>
-        <div class="justify-content-center">
-            <a href="/restaurant">Mes restaurant</a>
-            <a href="/restaurant/new">Ajouter un restaurant</a>
-            <a href="/restaurant">Afficher tous les restaurants</a>
-            <a href="/user">Tous les utilisateurs</a>
-        </div>
+
         <div class="row col-8 justify-content-end">
             <a class=" mx-1 btn btn-dark nav-link active" href="/register">Register</a>
             <a class="mx-1 btn btn-dark nav-link" href="/login">Login</a>
             <a class="mx-1 btn btn-light nav-link disabled" href="/Logout">Logout</a>
         </div>
+
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Restaurants
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ path('restaurant_index') }}">Voir mes restaurants</a>
+                    <a class="dropdown-item" href="{{ path('restaurant_index') }}">Voir tous les restaurants</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ path('restaurant_new') }}">Créer un restaurant</a>
+                </div>
+            </div>
+            <div class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    Utilisateurs
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="{{ path('user_index') }}">Voir tous les utilisateurs</a>
+                </div>
+            </div>
     </nav>
 </head>
 

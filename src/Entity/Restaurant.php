@@ -67,7 +67,11 @@ class Restaurant
             $somme += $review->getRating();
             $total ++;
         }
-        return $somme/$total;
+        if ($somme > 0){
+            return $somme/$total;
+        } else {
+            return 0;
+        }
     }
 
     public function getId(): ?int

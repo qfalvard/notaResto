@@ -20,7 +20,7 @@ class ReviewController extends AbstractController
 
     /**
      * Affiche un review
-     * @Route("/review/{review}", name="review_show", methods={"GET"})
+     * @Route("/review/{review}", name="review_show", methods={"GET"}, requirements={"review"="\d+"})
      * @param review $review
      */
     public function show(Review $review)

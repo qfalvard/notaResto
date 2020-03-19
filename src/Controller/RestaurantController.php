@@ -12,7 +12,7 @@ class RestaurantController extends AbstractController
 {
 
     /**
-     * @Route("/restaurant", name="restaurant_index", methods={"GET"})
+     * @Route("/restaurant", name="restaurant_index", methods={"GET"}, requirements={"restaurant"="\d+"})
      */
     public function index(RestaurantRepository $restaurantRepository): Response
     {
@@ -25,15 +25,16 @@ class RestaurantController extends AbstractController
 
 
     /**
-     * @Route("/restaurant/{restaurant}", name="restaurant_show", methods={"GET"}, requirements={"restaurant"="\d+"})
+     * @Route("/restaurant/{restaurant}", name="restaurant_show", methods={"GET"})
      * @param Restaurant $restaurant
      */
     public function show(Restaurant $restaurant)
     {
-        return $this->render('restaurants/show.html.twig', [
+        return $this->render('restaurant/show.html.twig', [
             'restaurant' => $restaurant,
         ]);
     }
+    // , requirements={"restaurant"="\d+"}
 
     /**
      * @Route("/restaurant/new", name="restaurant_new", methods={"GET"})
