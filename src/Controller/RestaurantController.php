@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Restaurant;
+use App\Form\RestaurantType;
 use App\Repository\CityRepository;
 use App\Repository\RestaurantRepository;
 use App\Repository\ReviewRepository;
@@ -42,7 +43,15 @@ class RestaurantController extends AbstractController
      */
     public function new()
     {
-        return $this->render('restaurant/form.html.twig');
+        $restaurant = new Restaurant;
+        $form = $this->createForm(RestaurantType::class, $restaurant);
+
+        // On veut que le user du restaurant soit le user connecté (on l'a grâce à $this->getUser())
+        $restaurant->setUser($this->getUser());
+
+        return $this->render('restaurant/form.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**
