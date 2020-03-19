@@ -27,7 +27,7 @@ class RestaurantController extends AbstractController
 
 
     /**
-     * @Route("/restaurant/{restaurant}", name="restaurant_show", methods={"GET"})
+     * @Route("/restaurant/{restaurant}", name="restaurant_show", methods={"GET"}, requirements={"restaurant"="\d+"})
      * @param Restaurant $restaurant
      */
     public function show(Restaurant $restaurant)
@@ -36,7 +36,6 @@ class RestaurantController extends AbstractController
             'restaurant' => $restaurant,
         ]);
     }
-    // , requirements={"restaurant"="\d+"}
 
     /**
      * @Route("/restaurant/new", name="restaurant_new", methods={"GET"})

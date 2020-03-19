@@ -49,6 +49,12 @@ class Restaurant
      */
     private $reviews;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="restaurants")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $user;
+
     public function __construct()
     {
         $this->setCreatedAt(new \DateTime());
@@ -72,12 +78,6 @@ class Restaurant
         } else {
             return 0;
         }
-    }
-
-    public function trim()
-    {
-        $trim = $this->getCity();
-        return trim($trim);
     }
 
     public function getReview(): ?string
@@ -200,6 +200,18 @@ class Restaurant
                 $review->setRestaurant(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
