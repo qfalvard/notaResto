@@ -4,16 +4,13 @@
 
 {% block body %}
 
-<section class="jumbotron text-center">
+<section class="jumbotron">
     <div class="container">
-        <h1>Notre meilleur restaurant est...</h1>
+        <h1>Restaurant {{ restaurant.name }}</h1>
         <h2>
-            <strong>
-            {{ restaurant.name }} !
-            </strong>
-            <smallclass="badge badge-primary">
+            <small class="badge badge-primary">
                 {{ restaurant.averageRating | number_format(2, ',') }} sur 5 étoiles!
-                </small>
+            </small>
         </h2>
         <p class="lead text-muted">
             {{ restaurant.description }}
@@ -23,6 +20,18 @@
                 avis !
             </a>
         </p>
+        <h2>Les avis : </h2>
+        {% for review in restaurant.reviews %}
+            <h5>Ecrite par : Anonyme</h5>
+            <p class=""><strong>Note</strong> : {{ review.rating }}</p>
+            <p class=""><strong>Message</strong> : <br> {{ review.message }}</p>
+            <div class="form-group">
+                <label for="">Message</label>
+                <input type="text" class="form-control" placeholder="Répondre à cet avis...">
+            </div>
+            <button class="btn btn-sm btn-primary float-right">Répondre</button>
+            <hr>
+        {% endfor %}
     </div>
 </section>
 {% endblock %}

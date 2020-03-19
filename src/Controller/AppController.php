@@ -15,7 +15,6 @@ class AppController extends AbstractController
      */
     public function index()
     {
-
         /**
          * On récupère les données de notre nouvelle méthode
          */

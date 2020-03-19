@@ -65,12 +65,21 @@ class Restaurant
 
         foreach ($this->getReviews() as $review) {
             $somme += $review->getRating();
-            $total ++;
+            $total++;
         }
-        if ($somme > 0){
-            return $somme/$total;
+        if ($somme > 0) {
+            return $somme / $total;
         } else {
             return 0;
+        }
+    }
+
+    public function getReview(): ?string
+    {
+        foreach ($this->getReviews() as $review) {
+            $message = $review->getMessage();
+            
+            return $message;
         }
     }
 
