@@ -1,88 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello RestaurantController!{% endblock %}
+{% block title %}Liste des restaurants{% endblock %}
 
 {% block body %}
+<div class="container mt-3">
+    <div class="row">
+        <div class="col">
 
-<section class="jumbotron text-center">
-    {% for restaurant in restaurants %}
-    {% if loop.first %}
-    <div class="container">
-        <h1>Notre meilleur restaurant est...</h1>
-        <h2>
-            {{ restaurant.name }} !
-            <smallclass="badge badge-primary">
-                {{ restaurant.averageRating | number_format(2, ',') }} sur 5 étoiles!
-                </small>
-        </h2>
-        <p class="lead text-muted">
-            {{ restaurant.description }}
-        </p>
-        <p>
-            <a href="{{ path('restaurant_show', {restaurant: restaurant.id} ) }}" class="btn btn-success my-2">Donner un
-                avis !
-            </a>
-        </p>
-    </div>
-    {% endif %}
-    {% endfor %}
-</section>
+            <table class="table">
 
-<div class="album py-5 bg-light">
-    <div class="container">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Le restaurant</th>
+                        <th>Localité</th>
+                        <th>Note</th>
+                        <th></th>
+                    </tr>
+                </thead>
 
-        <div class="row">
-            {% for restaurant in restaurants %}
-            {% if not loop.first %}
-            <h1>{{ restaurant.city.zipNoWhitespaces }}</h1>
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                        role="img" aria-label="Placeholder: Thumbnail">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                            dy=".3em">Thumbnail</text>
-                    </svg>
-                    <div class="card-body">
-                        <p class="card-text">
-                            <h2>{{restaurant.name}}</h2>
-                            <small class="badge badge-primary">{{ restaurant.averageRating | number_format(2, ',') }}
-                                sur 5 étoiles !</small>
-                            {{ restaurant.description }}
-                        </p>
+                <tbody>
 
-                        <div class="d-flex justify-content-between float-right">
-                            <a href="{{ path('restaurant_show', {restaurant: restaurant.id} ) }}" class="btn btn-sm btn-outline-secondary">Donner un avis</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
+                    {% for restaurant in restaurants %}
+                    <tr>
+                        <td>{{ restaurant.id }}</td>
+                        <td>
+                            {{ restaurant.name }}
+                            <small>{{ restaurant.description }}</small>
+                        </td>
+                        <td>{{ restaurant.city.zipcode }} {{ restaurant.city.name }}</td>
+                        <td>{{ restaurant.averageRating | number_format(2, ',') }}</td>
+                        <td>
+                            <a href="{{ path("restaurant_show", {restaurant: restaurant.id}) }}">Voir</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
         </div>
     </div>
 </div>
-
-<!-- <table class="table table-striped table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">description</th>
-            <th scope="col">rating</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for restaurant in restaurants %}
-        <tr>
-            <th scope="row">{{restaurant.id}}</th>
-            <td class="row mr-2">{{restaurant.name}}</td>
-            <td>
-                {{restaurant.averageRating | number_format(2, '.', ',')}}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table> -->
 {% endblock %}

@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\City;
 use App\Entity\Restaurant;
 use App\Entity\Review;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
@@ -41,5 +43,30 @@ class AppController extends AbstractController
             // Cette fois, on envoie à Twig notre nouveau tableau
             'restaurants' => $tenBestRestaurants,
         ]);
+    }
+
+    /**
+     * @Route("/search", name="app_search", methods={"GET"})
+     * @param Request $request
+     */
+    public function search(Request $request)
+    {
+        // On récupère l'input de recherche du formulaire, le name=zipcode
+        $searchZipcode = $request->query->get('zipcode');
+
+        $city = $this->getDoctrine()->getRepository(City::class)->findOneBy(["zipcode" => $searchZipcode]);
+
+        // Si une ville est trouvée
+        if ($city) {
+
+            $restaurants = $city->getRestaurants();
+
+            return $this->render('restaurant/index.html.twig', [
+                'restaurants' => $restaurants,
+            ]);
+        }
+
+        // Sinon, on redirige en page d'accueil
+        return $this->redirectToRoute("app_index");
     }
 }
