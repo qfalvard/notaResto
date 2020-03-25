@@ -49,7 +49,7 @@ class Restaurant
     private $restaurantPictures;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="restaurant", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="restaurant", orphanRemoval=true, cascade={"all"})
      */
     private $reviews;
 

@@ -65,29 +65,58 @@ class ApiRestaurantController extends AbstractController
         $restaurant = new Restaurant();
         $restaurant->setName($request->request->get('name'));
         $restaurant->setDescription($request->request->get('description'));
-        
+
         $user = $this->getDoctrine()->getRepository(User::class)->find(1);
         $city = $this->getDoctrine()->getRepository(City::class)->find(1);
 
         $restaurant->setUser($user);
         $restaurant->setCity($city);
-
-        // $data = $this->serializer->normalize($restaurant, null, ['groups' => 'all_restaurants']);
-
-        // $jsonContent = $this->serializer->serialize($data, 'json');
-
-        // $response = new Response($jsonContent);
-
-        // // On ajoute quelques headers pour préciser le type de données qui arrivera par notre API
-        // $response->headers->set('Content-Type', 'application/json');
-
-
-        // $em = $this->get('doctrine.orm.entity_manager');
         $em = $this->getDoctrine()->getManager();
         $em->persist($restaurant);
         $em->flush();
-        // Enfin, on retourne la réponse !
-        return new Response(null);
 
+        return new Response('Restaurant ajouté');
+    }
+
+    /**
+     * @Route("/api/restaurants/{restaurant}/edit", name="edit_api", methods={"POST"}, requirements={"restaurant"="\d+"})
+     */
+    public function edit(Restaurant $restaurant, Request $request)
+    {
+        if (!empty($request->get('name'))) {
+            // dd($request->get('name'));
+            $restaurant->setName($request->get('name'));
+
+        }
+        if (!empty($request->get('description'))) {
+            // dd($request->get('description'));
+            $restaurant->setDescription($request->get('description'));
+        }
+        if (!empty($request->get('user_id'))) {
+            // dd($request->get('user_id');
+            $user = $this->getDoctrine()->getRepository(User::class)->find($request->get('user_id'));
+            $restaurant->setUser($user);
+        }
+        if (!empty($request->get('city_id'))) {
+            // dd($request->get('city_id'));
+            $city = $this->getDoctrine()->getRepository(City::class)->find($request->get('city_id'));
+            $restaurant->setCity($city);
+        }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($restaurant);
+        $em->flush();
+        return new Response('Zob');
+    }
+
+    /**
+     * @Route("/api/restaurants/{restaurant}/delete", name="delete_api", methods={"DELETE"}, requirements={"restaurant"="\d+"})
+     */
+    public function delete(Restaurant $restaurant)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($restaurant);
+        $em->flush();
+
+        return new Response('eh bim!');
     }
 }

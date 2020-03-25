@@ -45,7 +45,7 @@ class Review
     private $parent;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="App\Entity\Review", mappedBy="parent", cascade={"all"})
      */
     private $childs;
 
